@@ -1,24 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Adminlogin from './component/Adminlogin/Adminlogin';
+import ForgetPassword from "./component/Adminlogin/ForgetPassword/ForgetPassword";
+import ProtectedRoute from './component/ProtectedRoute/ProtectedRoute';
+import Layout from './component/Layout/Layout';
+import Dashboard from './component/Dashboard/Dashboard';
+import Challenges from './component/Challenges/Challenges';
+import Words from './component/Words/Words';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Adminlogin/>}></Route>
+      <Route path="/forgetpassword" element={<ForgetPassword/>}></Route>
+      <Route path="/dashboard" element={<ProtectedRoute><Layout><Dashboard /></Layout></ProtectedRoute>}></Route>
+      <Route path="/challenges" element={<ProtectedRoute><Layout><Challenges /></Layout></ProtectedRoute>}></Route>
+      <Route path="/words" element={<ProtectedRoute><Layout><Words /></Layout></ProtectedRoute>}></Route>
+    </Routes>
+  </BrowserRouter>
   );
 }
 
