@@ -28,7 +28,7 @@ const Words = () => {
   const [selectedWord, setselectedWord] = useState("");
   const [toggle, settoggle] = useState(false);
   const [search, setsearch] = useState();
-  
+
   //CALLING HOOK FOR FETCHING WORDS
   const words = useFetchAllWords(
     "http://localhost:5000/word/getAllWords",

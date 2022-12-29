@@ -26,15 +26,15 @@ export const WordStyle = {
     display: "flex",
     justifyContent: "space-between",
     "@media only screen and (max-width: 430px)": {
-      display: "block"
-    }
+      display: "block",
+    },
   },
 
   searchFieldStyle: {
     width: "40%",
     "@media only screen and (max-width: 430px)": {
-      width: "100%"
-    }
+      width: "100%",
+    },
   },
 
   AddWordBtnStyle: {
@@ -45,27 +45,26 @@ export const WordStyle = {
       backgroundColor: "#EB8296",
     },
     "@media only screen and (max-width: 430px)": {
-      width: "50%"
-    }
-
+      width: "50%",
+    },
   },
 
-  generalButtonHolderStyle : {
+  generalButtonHolderStyle: {
     "@media only screen and (max-width: 430px)": {
       width: "80%",
       margin: "auto",
       display: "flex",
       justifyContent: "space-between",
-      marginTop: "10px"
-    }
+      marginTop: "10px",
+    },
   },
 
   generalbtnStyle: {
     marginLeft: "5px",
     marginRight: "5px",
     "@media only screen and (max-width: 430px)": {
-      width: "50%"
-    }
+      width: "50%",
+    },
   },
 
   wordCardStyle: {
@@ -101,7 +100,7 @@ export const WordStyle = {
     "&::-webkit-scrollbar-thumb": {
       display: "none",
     },
-    paddingBottom: "10px"
+    paddingBottom: "10px",
   },
 
   menuStyle: {

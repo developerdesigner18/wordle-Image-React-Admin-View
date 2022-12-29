@@ -115,7 +115,6 @@ export const ChallengeStyle = {
     },
   },
 
-
   AddModelStyle: {
     position: "absolute",
     top: "50%",
