@@ -8,6 +8,7 @@ import Layout from './component/Layout/Layout';
 import Dashboard from './component/Dashboard/Dashboard';
 import Challenges from './component/Challenges/Challenges';
 import Words from './component/Words/Words';
+import Subscription from './component/Subscription/Subscription';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="/dashboard" element={<ProtectedRoute><Layout><Dashboard /></Layout></ProtectedRoute>}></Route>
       <Route path="/challenges" element={<ProtectedRoute><Layout><Challenges /></Layout></ProtectedRoute>}></Route>
       <Route path="/words" element={<ProtectedRoute><Layout><Words /></Layout></ProtectedRoute>}></Route>
+      <Route path="/subscriptions" element={<ProtectedRoute><Layout><Subscription/></Layout></ProtectedRoute>}></Route>
     </Routes>
   </BrowserRouter>
   );

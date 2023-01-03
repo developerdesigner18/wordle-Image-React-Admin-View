@@ -51,7 +51,7 @@ function Layout({ children }) {
       <ThemeProvider theme={darkTheme}>
         <Card>
           <Header setTheme={setTheme} theme={theme} />
-          <Card sx={style}>{children}</Card>
+          <Card sx={style} theme={theme}>{children}</Card>
         </Card>
       </ThemeProvider>
     </>

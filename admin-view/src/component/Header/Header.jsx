@@ -106,6 +106,7 @@ function Header({ setTheme, theme }) {
         <Sidebar
           mobileOpen={mobileOpen}
           handleDrawerToggle={handleDrawerToggle}
+          theme={theme}
         />
       </Box>
     </>

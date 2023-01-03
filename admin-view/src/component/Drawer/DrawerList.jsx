@@ -8,6 +8,7 @@ import Avatar from "@mui/material/Avatar";
 
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
+import Groups2Icon from '@mui/icons-material/Groups2';
 import LogoutIcon from "@mui/icons-material/Logout";
 
 import AbcIcon from "@mui/icons-material/Abc";
@@ -108,6 +109,20 @@ function DrawerList() {
             <ListItemText primary={"Words"} />
           </ListItemButton>
         </ListItem>
+        
+        <ListItem disablePadding>
+          <ListItemButton
+            onClick={() => {
+              Navigate("/subscriptions");
+            }}
+          >
+            <ListItemIcon>
+              <Groups2Icon />
+            </ListItemIcon>
+            <ListItemText primary={"People"} />
+          </ListItemButton>
+        </ListItem>
+
         {isLogin ? (
           <ListItem
             disablePadding
