@@ -52,12 +52,12 @@ import {
             '#5059AB',
             '#09909F'
           ],
-        barThickness: 10
+        barThickness: 12
       }
     ],
   };
 
-function Totaluser({heading}) {
+function ChartTemplate({heading}) {
   return (
     <>
       <Box sx={TotalUserStyle.cardHolderStyle}>
@@ -76,4 +76,4 @@ function Totaluser({heading}) {
   );
 }
 
-export default Totaluser;
+export default ChartTemplate;

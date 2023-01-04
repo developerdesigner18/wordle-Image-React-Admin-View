@@ -1,6 +1,6 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
-import Totaluser from "./Totaluser";
+import ChartTemplate from "./ChartTemplate";
 
 
 function Dashboard() { 
@@ -8,16 +8,16 @@ function Dashboard() {
     <>
       <Grid container spacing={2}>
         <Grid item md={6} sm={12} xs={12}>
-          <Totaluser heading={'Total User'}/>
+          <ChartTemplate heading={'Total User'}/>
         </Grid>
         <Grid item md={6} sm={12} xs={12}>
-          <Totaluser heading={'Subscribed Users'}/>
+          <ChartTemplate heading={'Subscribed Users'}/>
         </Grid>
         <Grid item md={6} sm={12} xs={12}>
-          <Totaluser heading={'Subscribed Users'}/>
+          <ChartTemplate heading={'Incorrect Words'}/>
         </Grid>
         <Grid item md={6} sm={12} xs={12}>
-          <Totaluser heading={'Correct Word'}/>
+          <ChartTemplate heading={'Correct Word'}/>
         </Grid>
       </Grid>
     </>
