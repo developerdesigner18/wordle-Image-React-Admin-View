@@ -9,12 +9,18 @@ export const SubscriptionStyle = {
     display: "flex",
     justifyContent: "space-evenly",
     margin: "auto",
+    "@media only screen and (max-width: 920px)": {
+      display: "block",
+    },
   },
   peopleListHolderStyle: {
     width: "45%",
     height: "460px",
     boxShadow: "2px 1px 19px -7px rgba(69,69,69,0.75)",
     marginTop: "20px",
+    "@media only screen and (max-width: 920px)": {
+      width: "100%",
+    },
   },
   peopleHeadingStyle: {
     textAlign: "center",
@@ -46,6 +52,9 @@ export const SubscriptionStyle = {
     display: "flex",
     justifyContent: "space-between",
     marginBottom: "7px",
+    "@media only screen and (max-width: 350px)": {
+      display: "block",
+    },
   },
   peopleDescHolderStyle: {
     display: "flex",
@@ -66,6 +75,9 @@ export const SubscriptionStyle = {
     height: "460px",
     marginTop: "20px",
     boxShadow: "2px 1px 19px -7px rgba(69,69,69,0.75)",
+    "@media only screen and (max-width: 920px)": {
+      width: "100%",
+    },
   },
   editorheadingStyle: {
     textAlign: "center",
@@ -75,10 +87,18 @@ export const SubscriptionStyle = {
   formHolderStyle: {
     width: "85%",
     height: "395px",
-
     margin: "auto",
     marginTop: "20px",
     overflow: "auto",
+    "&::-webkit-scrollbar": {
+      display: "none",
+    },
+    "&::-webkit-scrollbar-track": {
+      display: "none",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      display: "none",
+    },
   },
   SubjectHolderStyle: {
     width: "85%",
