@@ -13,7 +13,7 @@ function Adminlogin() {
 
   const handleLogin = () => {
     axios
-      .post("http://localhost:5000/auth/login", {
+      .post(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, {
         email: email.trim(),
         password: password,
       })

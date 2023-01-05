@@ -23,7 +23,7 @@ const toastConfig = {
 function Subscription() {
   const [selectedId, setselectedId] = useState("");
   const subscribers = useFetchAllSubscriber(
-    "http://localhost:5000/subscribe/getAllSubscriber",
+    `${process.env.REACT_APP_BACKEND_URL}/subscribe/getAllSubscriber`,
     selectedId
   );
 

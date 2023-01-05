@@ -7,8 +7,8 @@ const useFetchAllWords = (url, dep_var, setsearch) => {
     axios
       .get(url, {
         headers: {
-          'Authorization': localStorage.getItem('token')
-        }
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       })
       .then((response) => {
         setwords(response.data.data);

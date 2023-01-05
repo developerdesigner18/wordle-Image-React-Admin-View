@@ -7,7 +7,7 @@ const useFetchAllSubscriber = (url, dep_var) => {
     axios
       .get(url, {
         headers: {
-          Authorization: localStorage.getItem("token"),
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((response) => {
@@ -17,7 +17,7 @@ const useFetchAllSubscriber = (url, dep_var) => {
         console.log("Can't Find data in Response");
       });
   }, [dep_var, url]);
-  
+
   return subscriber;
 };
 

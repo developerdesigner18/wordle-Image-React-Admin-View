@@ -15,10 +15,9 @@ function UpdateWord({
   handleCloseUpdateWord,
   menuClose,
 }) {
-
   //CUSTOM HOOK TO GET THE SELECTED WORD
   const word = useGetWord(
-    "http://localhost:5000/word/getSingleWord",
+    `${process.env.REACT_APP_BACKEND_URL}/word/getSingleWord`,
     selectedWord
   );
   const [newWord, setnewWord] = useState();

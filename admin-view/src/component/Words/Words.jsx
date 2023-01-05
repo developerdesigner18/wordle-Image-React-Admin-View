@@ -31,11 +31,10 @@ const Words = () => {
 
   //CALLING HOOK FOR FETCHING WORDS
   const words = useFetchAllWords(
-    "http://localhost:5000/word/getAllWords",
+    `${process.env.REACT_APP_BACKEND_URL}/word/getAllWords`,
     selectedWord,
     setsearch
   );
-  //
 
   //FOR ADD MODEL OPENING AND CLOSE
   const [openAddWord, setopenAddWord] = React.useState(false);

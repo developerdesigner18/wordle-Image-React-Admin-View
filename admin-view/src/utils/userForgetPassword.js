@@ -2,9 +2,10 @@ import axios from "axios";
 
 export const handlesendOTP = (settoggle, setstatus, email) => {
   axios
-    .post("http://localhost:5000/auth/generateOPT", {
+    .post(`${process.env.REACT_APP_BACKEND_URL}/auth/generateOPT`, {
       email: email.trim(),
     })
+
     .then((response) => {
       settoggle("OTP");
     })
@@ -16,9 +17,10 @@ export const handlesendOTP = (settoggle, setstatus, email) => {
 
 export const handleverifyOTP = (otp, settoggle, setstatus) => {
   axios
-    .post("http://localhost:5000/auth/verifyOTP", {
+    .post(`${process.env.REACT_APP_BACKEND_URL}/auth/verifyOTP`, {
       otp: otp,
     })
+
     .then((response) => {
       settoggle("change");
     })
@@ -37,10 +39,11 @@ export const handleSubmit = (
 ) => {
   if (newpass === reentred) {
     axios
-      .post("http://localhost:5000/auth/updatePassword", {
+      .post(`${process.env.REACT_APP_BACKEND_URL}/auth/updatePassword`, {
         email: email,
         password: newpass,
       })
+
       .then((response) => {
         console.log("Success Password Change.");
         handleopenLoginModel();

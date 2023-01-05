@@ -12,7 +12,7 @@ const useGetChallenge = (url, challengeID) => {
         },
         {
           headers: {
-            Authorization: localStorage.getItem("token"),
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         }
       )

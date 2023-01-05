@@ -41,11 +41,11 @@ const columns = [
 
 function Challenges() {
   const [selectedChallenge, setselectedChallenge] = useState("");
+  console.log(process.env.REACT_APP_BACKEND_URL);
   const challenges = useFetchChallenges(
-    "http://localhost:5000/challenges/getChallenge",
+    `${process.env.REACT_APP_BACKEND_URL}/challenges/getChallenge`,
     selectedChallenge
   );
-
   //PAGINATION LOGIC FUNCTION
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -138,7 +138,7 @@ function Challenges() {
                           </TableCell>
                           <TableCell sx={ChallengeStyle.tableCellStyle}>
                             <img
-                              src={`http://localhost:5000/static/${row["challenge_img"]}`}
+                              src={`${process.env.REACT_APP_BACKEND_URL}/static/${row["challenge_img"]}`}
                               alt="puzzle"
                               height="55px"
                               width="65px"

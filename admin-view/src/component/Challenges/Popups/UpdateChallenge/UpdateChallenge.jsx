@@ -17,7 +17,7 @@ function UpdateChallenge({
   settoggle,
 }) {
   const challengeData = useGetChallenge(
-    "http://localhost:5000/challenges/getSingleChallenge",
+    `${process.env.REACT_APP_BACKEND_URL}/challenges/getSingleChallenge`,
     selectedChallenge
   );
 
@@ -84,7 +84,7 @@ function UpdateChallenge({
               />
             ) : challengeData?.challenge_img ? (
               <img
-                src={`http://localhost:5000/static/${challengeData?.challenge_img}`}
+                src={`${process.env.REACT_APP_BACKEND_URL}/static/${challengeData?.challenge_img}`}
                 alt="current"
                 height="100"
                 width="100"

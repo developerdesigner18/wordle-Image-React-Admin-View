@@ -68,7 +68,7 @@ const chekingWord = (
       console.log("making Axios req");
       axios
         .post(
-          "http://localhost:5000/game/setStatistic",
+          `${process.env.REACT_APP_BACKEND_URL}/game/setStatistic`,
           {
             userID: JSON.parse(localStorage.getItem("player")).userID,
             winingStatus: winingStatus ? winingStatus : 0,
@@ -79,7 +79,7 @@ const chekingWord = (
           },
           {
             headers: {
-              authorization: localStorage.getItem("player-token"),
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           }
         )

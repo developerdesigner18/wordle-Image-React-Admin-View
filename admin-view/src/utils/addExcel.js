@@ -1,12 +1,15 @@
 import axios from "axios";
 
-const addExcel =async (data) => {
-  var status = await axios
-    .post("http://localhost:5000/word/importExcel", data, {
+const addExcel = async (data) => {
+  var status = await axios.post(
+    `${process.env.REACT_APP_BACKEND_URL}/word/importExcel`,
+    data,
+    {
       headers: {
-        'Authorization': localStorage.getItem("token")
-      }
-    })
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    }
+  );
   return status.status;
 };
 

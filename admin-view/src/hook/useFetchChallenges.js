@@ -7,8 +7,8 @@ const useFetchChallenges = (url, dep_var) => {
     axios
       .get(url, {
         headers: {
-          'Authorization': localStorage.getItem("token")
-        }
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       })
       .then((response) => {
         setchallenges(response.data.data);

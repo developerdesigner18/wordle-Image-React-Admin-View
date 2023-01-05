@@ -2,11 +2,11 @@ import axios from "axios";
 
 const updateChallenge = async (data) => {
   var status = await axios.post(
-    "http://localhost:5000/challenges/updateChallenges",
+    `${process.env.REACT_APP_BACKEND_URL}/challenges/updateChallenges`,
     data,
     {
       headers: {
-        Authorization: localStorage.getItem("token"),
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     }
   );

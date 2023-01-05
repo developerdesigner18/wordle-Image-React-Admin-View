@@ -12,7 +12,7 @@ const useGetWord = (url, wordID) => {
         },
         {
           headers: {
-            Authorization: localStorage.getItem("token"),
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         }
       )

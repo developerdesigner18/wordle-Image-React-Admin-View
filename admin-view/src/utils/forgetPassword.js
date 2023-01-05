@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const handlesendOTP = (settoggle, setstatus, email) => {
   axios
-    .post("http://localhost:5000/auth/generateOPT", {
+    .post(`${process.env.REACT_APP_BACKEND_URL}/auth/generateOPT`, {
       email: email.trim(),
     })
     .then((response) => {
@@ -16,7 +16,7 @@ export const handlesendOTP = (settoggle, setstatus, email) => {
 
 export const handleverifyOTP = (otp, settoggle, setstatus) => {
   axios
-    .post("http://localhost:5000/auth/verifyOTP", {
+    .post(`${process.env.REACT_APP_BACKEND_URL}/auth/verifyOTP`, {
       otp: otp,
     })
     .then((response) => {
@@ -30,7 +30,7 @@ export const handleverifyOTP = (otp, settoggle, setstatus) => {
 export const handleSubmit = (newpass, reentred, email, setstatus, Navigate) => {
   if (newpass === reentred) {
     axios
-      .post("http://localhost:5000/auth/updatePassword", {
+      .post(`${process.env.REACT_APP_BACKEND_URL}/auth/updatePassword`, {
         email: email,
         password: newpass,
       })

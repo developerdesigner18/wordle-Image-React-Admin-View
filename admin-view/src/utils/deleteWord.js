@@ -2,14 +2,14 @@ import axios from "axios";
 
 const deleteWord = async (id) => {
   var status = await axios.post(
-    "http://localhost:5000/word/deleteWord",
+    `${process.env.REACT_APP_BACKEND_URL}/word/deleteWord`,
     {
-       _id: id
+      _id: id,
     },
     {
       headers: {
-        'Authorization': localStorage.getItem('token')
-      }
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
     }
   );
   return status.status;
