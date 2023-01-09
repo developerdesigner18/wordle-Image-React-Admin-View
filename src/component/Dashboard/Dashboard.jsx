@@ -11,11 +11,11 @@ function Dashboard() {
   );
 
   const challenges = useFetchChallenges(
-    `http://localhost:5000/chart/getUpcommingChallenge`
+    `${process.env.REACT_APP_BACKEND_URL}/chart/getUpcommingChallenge`
   );
 
   const subsCount = usegetSubsCount(
-    "http://localhost:5000/chart/getSubscriberCount"
+    `${process.env.REACT_APP_BACKEND_URL}/chart/getSubscriberCount`
   );
 
   console.log(subsCount);
@@ -125,7 +125,7 @@ function Dashboard() {
                   challenges.map((challenge) => (
                     <Card sx={DashBoardStyle.soloChallengeStyle}>
                       <img
-                        src={`http://localhost:5000/static/${challenge.challenge_img}`}
+                        src={`${process.env.REACT_APP_BACKEND_URL}/static/${challenge.challenge_img}`}
                         alt="challenge"
                         style={DashBoardStyle.listImgStyle}
                       />
