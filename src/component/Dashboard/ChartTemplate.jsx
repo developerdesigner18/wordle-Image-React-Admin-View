@@ -4,70 +4,64 @@ import { TotalUserStyle } from "./styles";
 import { Box } from "@mui/system";
 
 import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend,
-  } from 'chart.js';
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
-  import { Bar } from 'react-chartjs-2';
+import { Bar } from "react-chartjs-2";
 
-  ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
-  );
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
-  export const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'Chart.js Bar Chart',
-      },
+export const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: "top",
     },
-  };
-  
-  const labels = ['2012', '2013', '2014', '2015', '2016'];
-  
-  export const data = {
-    labels,
-    datasets: [
-      {
-        label: 'Dataset 1',
-        data: [100,200,300,420,480],
-        backgroundColor: [
-            '#7DE314',
-            '#5059AB',
-            '#01CC9B',
-            '#5059AB',
-            '#09909F'
-          ],
-        barThickness: 12
-      }
-    ],
-  };
+    title: {
+      display: true,
+      text: "Chart.js Bar Chart",
+    },
+  },
+};
 
-function ChartTemplate({heading}) {
+const labels = ["2012", "2013", "2014", "2015", "2016"];
+
+export const data = {
+  labels,
+  datasets: [
+    {
+      label: "Dataset 1",
+      data: [100, 200, 300, 420, 480],
+      backgroundColor: ["#7DE314", "#5059AB", "#01CC9B", "#5059AB", "#09909F"],
+      barThickness: 12,
+    },
+  ],
+};
+
+function ChartTemplate({ heading }) {
   return (
     <>
       <Box sx={TotalUserStyle.cardHolderStyle}>
         <Card sx={TotalUserStyle.cardStyle}>
-          <CardContent sx={{margin: "auto", marginTop:"25px"}}>
+          <CardContent sx={{ margin: "auto", marginTop: "25px" }}>
             <Typography variant="h4" sx={TotalUserStyle.cardHeading}>
               {heading}
             </Typography>
-            <Box sx={{width: "95%", marginTop: "10px"}}>
-            <Bar options={options} data={data}/>
+            <Box sx={{ width: "95%", marginTop: "10px" }}>
+              <Bar options={options} data={data} />
             </Box>
           </CardContent>
         </Card>
