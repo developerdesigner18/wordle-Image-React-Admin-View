@@ -1,9 +1,12 @@
 import React from "react";
 import { Box, Card, Grid, Typography } from "@mui/material";
 import { DashBoardStyle } from "./DashBoardStyle";
+import AnimatedNumber from "react-animated-number";
 import useGetDailyWord from "../../hook/useGetDailyWord";
 import useFetchChallenges from "../../hook/useFetchChallenges";
 import usegetSubsCount from "../../hook/useGetSubsCount";
+import useFetchTotalUserCount from "../../hook/useFetchTotalUserCount";
+import useGetCorrectAndIncorrectCount from "../../hook/useGetCorrectAndIncorrectCount";
 
 function Dashboard() {
   const dailyWord = useGetDailyWord(
@@ -18,21 +21,28 @@ function Dashboard() {
     `${process.env.REACT_APP_BACKEND_URL}/chart/getSubscriberCount`
   );
 
-  console.log(subsCount);
+  const totalUser = useFetchTotalUserCount(
+    `http://localhost:5000/chart/getTotaluser`
+  );
 
-  // useEffect(() => {
-  //   updated();
-  // }, [subsCount]);
+  const { correctCount, incorrectCount } = useGetCorrectAndIncorrectCount(
+    `http://localhost:5000/chart/getCorrectAndIncorrectCount`
+  );
 
-  // let counts = setInterval(updated);
-  // let upto = 0;
-  // function updated() {
-  //   var count = document.getElementById("subscriber");
-  //   count.innerHTML = ++upto;
-  //   if (upto === 24) {
-  //     clearInterval(counts);
-  //   }
-  // }
+  if (
+    dailyWord === undefined ||
+    challenges === undefined ||
+    subsCount === undefined ||
+    totalUser === undefined ||
+    correctCount === undefined ||
+    incorrectCount === undefined
+  ) {
+    return (
+      <>
+        <p>Loading...</p>
+      </>
+    );
+  }
 
   return (
     <>
@@ -48,7 +58,12 @@ function Dashboard() {
                   Total User
                 </Typography>
                 <Typography variant="h1" id="total_user">
-                  30
+                  {/* {totalUser ? totalUser : "..."} */}
+                  <AnimatedNumber
+                    value={totalUser ? totalUser : 0}
+                    duration={800}
+                    stepPrecision={0}
+                  />
                 </Typography>
               </Card>
             </Grid>
@@ -58,7 +73,12 @@ function Dashboard() {
                   Subscribers
                 </Typography>
                 <Typography variant="h1" id="subscriber">
-                  30
+                  {/* {subsCount ? subsCount : "..."} */}
+                  <AnimatedNumber
+                    value={subsCount ? subsCount : 0}
+                    duration={800}
+                    stepPrecision={0}
+                  />
                 </Typography>
               </Card>
             </Grid>
@@ -68,7 +88,12 @@ function Dashboard() {
                   Correct Word
                 </Typography>
                 <Typography variant="h1" id="correct_word">
-                  30
+                  {/* {correctCount ? correctCount : "..."} */}
+                  <AnimatedNumber
+                    value={correctCount ? correctCount : 0}
+                    duration={800}
+                    stepPrecision={0}
+                  />
                 </Typography>
               </Card>
             </Grid>
@@ -78,7 +103,12 @@ function Dashboard() {
                   Incorrect Word
                 </Typography>
                 <Typography variant="h1" id="incorrect-word">
-                  30
+                  {/* {incorrectCount ? incorrectCount : "..."} */}
+                  <AnimatedNumber
+                    value={incorrectCount ? incorrectCount : 0}
+                    duration={800}
+                    stepPrecision={0}
+                  />
                 </Typography>
               </Card>
             </Grid>
