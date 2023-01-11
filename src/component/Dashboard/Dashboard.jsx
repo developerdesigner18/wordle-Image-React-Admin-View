@@ -22,11 +22,11 @@ function Dashboard() {
   );
 
   const totalUser = useFetchTotalUserCount(
-    `http://localhost:5000/chart/getTotaluser`
+    `${process.env.REACT_APP_BACKEND_URL}/chart/getTotaluser`
   );
 
   const { correctCount, incorrectCount } = useGetCorrectAndIncorrectCount(
-    `http://localhost:5000/chart/getCorrectAndIncorrectCount`
+    `${process.env.REACT_APP_BACKEND_URL}/chart/getCorrectAndIncorrectCount`
   );
 
   if (
