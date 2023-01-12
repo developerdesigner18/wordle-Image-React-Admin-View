@@ -8,14 +8,12 @@ import Avatar from "@mui/material/Avatar";
 
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
-import Groups2Icon from '@mui/icons-material/Groups2';
+import Groups2Icon from "@mui/icons-material/Groups2";
 import LogoutIcon from "@mui/icons-material/Logout";
-
 import AbcIcon from "@mui/icons-material/Abc";
-import { Box } from "@mui/system";
-import { Typography } from "@mui/material";
-
+import { Box, Typography, Modal } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import AdminProfileUpdate from "./AdminProfileUpdate/AdminProfileUpdate";
 
 function DrawerList() {
   //LOGIN STATE DETERMINATION
@@ -49,6 +47,11 @@ function DrawerList() {
   };
   //
 
+  // OPEN MODEL FOR UPDATE ADMIN PROFILE
+  const [openAdminProfile, setopenAdminProfile] = React.useState(false);
+  const handleOpenAdminProfile = () => setopenAdminProfile(true);
+  const handleCloseAdminProfile = () => setopenAdminProfile(false);
+
   const Navigate = useNavigate();
   return (
     <>
@@ -61,13 +64,18 @@ function DrawerList() {
         }}
       >
         <ListItem disablePadding>
-          <Box sx={{ margin: "auto", marginBottom: "30px" }}>
+          <Box
+            sx={{ margin: "auto", marginBottom: "30px" }}
+            onClick={handleOpenAdminProfile}
+          >
             <Avatar
               alt="Remy Sharp"
-              src="images/DemoUser.jpg"
-              sx={{ width: 66, height: 66, margin: "auto" }}
+              src="images/UserDemo.svg"
+              sx={{ width: 80, height: 80, margin: "auto", fill: "red" }}
             />
-            <Typography sx={{ marginTop: "15px" }}>Mary Kelso</Typography>
+            <Typography sx={{ marginTop: "15px", textAlign: "center" }}>
+              Admin
+            </Typography>
           </Box>
         </ListItem>
 
@@ -109,7 +117,7 @@ function DrawerList() {
             <ListItemText primary={"Words"} />
           </ListItemButton>
         </ListItem>
-        
+
         <ListItem disablePadding>
           <ListItemButton
             onClick={() => {
@@ -148,6 +156,9 @@ function DrawerList() {
           </ListItem>
         ) : null}
       </List>
+      <Modal open={openAdminProfile} onClose={handleCloseAdminProfile}>
+        <AdminProfileUpdate handleCloseAdminProfile={handleCloseAdminProfile} />
+      </Modal>
     </>
   );
 }
