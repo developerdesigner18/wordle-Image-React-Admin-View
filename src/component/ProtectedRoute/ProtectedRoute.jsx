@@ -5,7 +5,6 @@ import { Navigate } from "react-router-dom";
 function ProtectedRoute({ children }) {
   if (
     localStorage.getItem("token") &&
-    JSON.parse(localStorage.getItem("user"))?.username === "admin" &&
     JSON.parse(localStorage.getItem("user"))?.role === "admin"
   ) {
     return <>{children}</>;
