@@ -14,10 +14,19 @@ import AbcIcon from "@mui/icons-material/Abc";
 import { Box, Typography, Modal } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import AdminProfileUpdate from "./AdminProfileUpdate/AdminProfileUpdate";
+import useFetchAdminData from "../../hook/useFetchAdminData";
 
 function DrawerList() {
   //LOGIN STATE DETERMINATION
   const [isLogin, setisLogin] = useState(false);
+  const [dataFetchingToggle, setdataFetchingToggle] = useState();
+
+  //FETCCHING ADMIN DATA
+  const adminData = useFetchAdminData(
+    `${process.env.REACT_APP_BACKEND_URL}/auth/getAdminData`,
+    dataFetchingToggle
+  );
+
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("user"))?.role === "admin") {
       setisLogin(true);
@@ -70,11 +79,15 @@ function DrawerList() {
           >
             <Avatar
               alt="Remy Sharp"
-              src="images/UserDemo.svg"
+              src={
+                adminData
+                  ? `${process.env.REACT_APP_BACKEND_URL}/static/${adminData?.profile_img}`
+                  : `images/UserDemo.svg`
+              }
               sx={{ width: 80, height: 80, margin: "auto", fill: "red" }}
             />
             <Typography sx={{ marginTop: "15px", textAlign: "center" }}>
-              Admin
+              {adminData?.username ? adminData?.username : "Admin"}
             </Typography>
           </Box>
         </ListItem>
@@ -157,7 +170,12 @@ function DrawerList() {
         ) : null}
       </List>
       <Modal open={openAdminProfile} onClose={handleCloseAdminProfile}>
-        <AdminProfileUpdate handleCloseAdminProfile={handleCloseAdminProfile} />
+        <AdminProfileUpdate
+          handleCloseAdminProfile={handleCloseAdminProfile}
+          setdataFetchingToggle={setdataFetchingToggle}
+          dataFetchingToggle={dataFetchingToggle}
+          adminData={adminData}
+        />
       </Modal>
     </>
   );

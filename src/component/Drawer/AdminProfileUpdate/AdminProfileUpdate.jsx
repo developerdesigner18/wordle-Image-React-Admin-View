@@ -2,9 +2,40 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { AdminProfileUpdateStyle } from "./AdminProfileUpdateStyle";
 import CancelIcon from "@mui/icons-material/Cancel";
-function AdminProfileUpdate({ handleCloseAdminProfile }) {
+import updateAdminProfile from "../../../utils/updateAdminProfile";
+function AdminProfileUpdate({
+  handleCloseAdminProfile,
+  setdataFetchingToggle,
+  dataFetchingToggle,
+  adminData,
+}) {
   // STATE FOR IMAGE INPUT
-  const [profileImage, setprofileImage] = useState();
+  const [profileImage, setprofileImage] = useState("");
+  // STATE FOR OTHER INFO
+  const [email, setemail] = useState("");
+  const [username, setusername] = useState("");
+  const [password, setpassword] = useState("");
+  // UPDATATION STATUS
+  const [status, setstatus] = useState("");
+
+  function handleUpdate() {
+    let adminUpdateFormData = new FormData();
+    email !== "" && adminUpdateFormData.append("email", email);
+    username !== "" && adminUpdateFormData.append("username", username);
+    password !== "" && adminUpdateFormData.append("password", password);
+    profileImage !== "" &&
+      adminUpdateFormData.append("profileImage", profileImage);
+    updateAdminProfile(adminUpdateFormData)
+      .then((message) => {
+        setstatus(message);
+        setdataFetchingToggle(!dataFetchingToggle);
+        handleCloseAdminProfile();
+      })
+      .catch((err) => {
+        setstatus(err?.response?.data?.msg);
+      });
+  }
+
   return (
     <>
       <Box
@@ -22,7 +53,6 @@ function AdminProfileUpdate({ handleCloseAdminProfile }) {
                 ? AdminProfileUpdateStyle.DarkcloseBtnBoxStyle
                 : AdminProfileUpdateStyle.closeIcon
             }
-            F
           />
         </Box>
         <Box sx={AdminProfileUpdateStyle.headingBoxStyle}>
@@ -39,7 +69,13 @@ function AdminProfileUpdate({ handleCloseAdminProfile }) {
         </Box>
         <Box sx={AdminProfileUpdateStyle.updateContentStyle}>
           <Box sx={AdminProfileUpdateStyle.imageUpdateHolder}>
-            {profileImage ? (
+            {adminData?.profile_img ? (
+              <img
+                src={`${process.env.REACT_APP_BACKEND_URL}/static/${adminData?.profile_img}`}
+                alt="profile"
+                style={AdminProfileUpdateStyle.profileImgStyle}
+              />
+            ) : profileImage ? (
               <img
                 src={URL.createObjectURL(profileImage)}
                 alt="profile"
@@ -79,6 +115,10 @@ function AdminProfileUpdate({ handleCloseAdminProfile }) {
             <TextField
               sx={AdminProfileUpdateStyle.textFieldStyle}
               size="small"
+              onChange={(e) => {
+                setemail(e.target.value);
+              }}
+              placeholder={adminData ? `${adminData?.email}` : "Enter Email"}
             ></TextField>
             <Typography sx={AdminProfileUpdateStyle.textFieldLabelStyle}>
               Enter User Name
@@ -86,6 +126,12 @@ function AdminProfileUpdate({ handleCloseAdminProfile }) {
             <TextField
               sx={AdminProfileUpdateStyle.textFieldStyle}
               size="small"
+              onChange={(e) => {
+                setusername(e.target.value);
+              }}
+              placeholder={
+                adminData ? `${adminData?.username}` : "Enter Username"
+              }
             ></TextField>
             <Typography sx={AdminProfileUpdateStyle.textFieldLabelStyle}>
               Enter Password to Continue
@@ -93,6 +139,10 @@ function AdminProfileUpdate({ handleCloseAdminProfile }) {
             <TextField
               sx={AdminProfileUpdateStyle.textFieldStyle}
               size="small"
+              type="password"
+              onChange={(e) => {
+                setpassword(e.target.value);
+              }}
             ></TextField>
 
             <Typography sx={AdminProfileUpdateStyle.passwordChangeLinkStyle}>
@@ -112,10 +162,14 @@ function AdminProfileUpdate({ handleCloseAdminProfile }) {
               variant="contained"
               color="success"
               sx={AdminProfileUpdateStyle.generalButtonStyle}
+              onClick={handleUpdate}
             >
               Submit
             </Button>
           </Box>
+          <Typography sx={{ textAlign: "center", marginTop: "5px" }}>
+            {status}
+          </Typography>
         </Box>
       </Box>
     </>
