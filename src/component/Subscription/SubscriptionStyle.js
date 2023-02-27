@@ -13,8 +13,24 @@ export const SubscriptionStyle = {
       display: "block",
     },
   },
+  mainRegisteredPeopleContentHolderStyle: {
+    width: "90%",
+    margin: "auto",
+    "@media only screen and (max-width: 920px)": {
+      width: "100%",
+    },
+  },
   peopleListHolderStyle: {
     width: "45%",
+    height: "460px",
+    boxShadow: "2px 1px 19px -7px rgba(69,69,69,0.75)",
+    marginTop: "20px",
+    "@media only screen and (max-width: 920px)": {
+      width: "100%",
+    },
+  },
+  registeredPeopleListHolderStyle: {
+    width: "100%",
     height: "460px",
     boxShadow: "2px 1px 19px -7px rgba(69,69,69,0.75)",
     marginTop: "20px",

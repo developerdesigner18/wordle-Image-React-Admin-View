@@ -9,6 +9,7 @@ import sendCustomMail from "../../utils/sendCustomMail";
 //TOSTIFY CONFIGURATION
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useFetchRegisteredUser from "../../hook/useFetchRegisteredUser";
 const toastConfig = {
   position: "top-center",
   autoClose: 5000,
@@ -26,6 +27,9 @@ function Subscription() {
     `${process.env.REACT_APP_BACKEND_URL}/subscribe/getAllSubscriber`,
     selectedId
   );
+  const registeredUser = useFetchRegisteredUser(
+    `${process.env.REACT_APP_BACKEND_URL}/user/getalluser`
+  );
 
   const [subject, setsubject] = useState("");
   const [text, settext] = useState("");
@@ -41,12 +45,12 @@ function Subscription() {
   return (
     <>
       <Typography sx={SubscriptionStyle.headingTextStyle} variant="h4">
-        Subscriptions
+        People
       </Typography>
       <Box sx={SubscriptionStyle.mainContentHolderStyle}>
         <Card sx={SubscriptionStyle.peopleListHolderStyle}>
           <Typography sx={SubscriptionStyle.peopleHeadingStyle} variant="h5">
-            People
+            Subscribe People
           </Typography>
           <Box sx={SubscriptionStyle.peopleContainerStyle}>
             {subscribers &&
@@ -73,6 +77,7 @@ function Subscription() {
               ))}
           </Box>
         </Card>
+
         <Card sx={SubscriptionStyle.editorContentHolderStyle}>
           <Typography sx={SubscriptionStyle.editorheadingStyle} variant="h5">
             Write mail to all Subscribers
@@ -123,6 +128,37 @@ function Subscription() {
                 Clear
               </Button>
             </Box>
+          </Box>
+        </Card>
+      </Box>
+      <Box sx={SubscriptionStyle.mainRegisteredPeopleContentHolderStyle}>
+        <Card sx={SubscriptionStyle.registeredPeopleListHolderStyle}>
+          <Typography sx={SubscriptionStyle.peopleHeadingStyle} variant="h5">
+            Registered People
+          </Typography>
+          <Box sx={SubscriptionStyle.peopleContainerStyle}>
+            {subscribers &&
+              registeredUser.map((item) => (
+                <Card sx={SubscriptionStyle.personStyle} key={item?._id}>
+                  <Box sx={SubscriptionStyle.peopleDescHolderStyle}>
+                    <Avatar>{item?.email[0]?.toUpperCase()}</Avatar>
+                    <Typography sx={SubscriptionStyle.emailStyle}>
+                      {item?.email}
+                    </Typography>
+                  </Box>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    sx={SubscriptionStyle.btnStyle}
+                    onClick={() => {
+                      handleRemove(item?.email);
+                      setselectedId(item?._id);
+                    }}
+                  >
+                    Remove
+                  </Button>
+                </Card>
+              ))}
           </Box>
         </Card>
       </Box>
