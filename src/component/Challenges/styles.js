@@ -145,4 +145,12 @@ export const ChallengeStyle = {
       width: 300,
     },
   },
+  searchFieldStyle: {
+    width: "40%",
+    margin: "30px 0px 0px 40px",
+    "@media only screen and (max-width: 430px)": {
+      width: "95%",
+      margin: "10px 0px 0px 10px",
+    },
+  },
 };

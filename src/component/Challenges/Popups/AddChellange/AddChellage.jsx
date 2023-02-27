@@ -7,6 +7,20 @@ import SaveIcon from "@mui/icons-material/Save";
 import CloseIcon from "@mui/icons-material/Close";
 import addChallenges from "../../../../utils/addChallenges";
 import CancelIcon from "@mui/icons-material/Cancel";
+import { alpha, styled } from "@mui/material/styles";
+import { green } from "@mui/material/colors";
+
+const GreenSwitch = styled(Switch)(({ theme }) => ({
+  "& .MuiSwitch-switchBase.Mui-checked": {
+    color: green[600],
+    "&:hover": {
+      backgroundColor: alpha(green[600], theme.palette.action.hoverOpacity),
+    },
+  },
+  "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
+    backgroundColor: green[600],
+  },
+}));
 
 function AddChellange({
   handleCloseAddChellange,
@@ -108,7 +122,7 @@ function AddChellange({
           <Typography variant="h6" sx={AddChellangeStyle.GrayouttextStyle}>
             Grayout
           </Typography>
-          <Switch
+          <GreenSwitch
             sx={AddChellangeStyle.switchStyle}
             onChange={(e) => {
               setgrauout(e.target.checked);

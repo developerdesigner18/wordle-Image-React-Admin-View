@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -6,7 +6,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import { Box, Button, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  InputAdornment,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { ChallengeStyle } from "./styles";
 import NoteAltOutlinedIcon from "@mui/icons-material/NoteAltOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -15,6 +21,8 @@ import ConfoDelete from "./Popups/ConfoDelete";
 import Modal from "@mui/material/Modal";
 import AddChellange from "./Popups/AddChellange/AddChellage";
 import UpdateChallenge from "./Popups/UpdateChallenge/UpdateChallenge";
+// import { AddChellangeStyle } from "./Popups/AddChellange/AddChellangeStyle";
+import SearchIcon from "@mui/icons-material/Search";
 
 const columns = [
   { id: "No", label: "No", align: "center" },
@@ -41,8 +49,9 @@ const columns = [
 
 function Challenges() {
   const [selectedChallenge, setselectedChallenge] = useState("");
+  const [challenges, setchallenges] = useState([]);
   console.log(process.env.REACT_APP_BACKEND_URL);
-  const challenges = useFetchChallenges(
+  const allchallenges = useFetchChallenges(
     `${process.env.REACT_APP_BACKEND_URL}/challenges/getChallenge`,
     selectedChallenge
   );
@@ -81,7 +90,23 @@ function Challenges() {
   //TOGGLE AFTER DELETE
   const [toggle, settoggle] = useState(false);
 
-  //
+  //FOR SEARCH CHALLENGES
+  const handleSearch = (value) => {
+    var newArray = allchallenges?.filter((item) => {
+      return item?.challenge_word
+        ?.toLowerCase()
+        ?.includes(value?.toLowerCase());
+    });
+    if (newArray.length !== 0) {
+      setchallenges(newArray);
+    } else {
+      setchallenges(allchallenges);
+    }
+  };
+  //FOR SET CHALLENGES IN STATE
+  useEffect(() => {
+    setchallenges(allchallenges);
+  }, [allchallenges]);
 
   if (challenges === undefined) return "Loading...";
 
@@ -99,6 +124,23 @@ function Challenges() {
           >
             Add Challenge
           </Button>
+        </Box>
+        <Box>
+          <TextField
+            id="outlined-basic"
+            variant="outlined"
+            placeholder="Search"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
+            size="small"
+            sx={ChallengeStyle.searchFieldStyle}
+            onChange={(e) => handleSearch(e.target.value)}
+          />
         </Box>
         {/* <Card sx={ChallengeStyle.cardStyle}> */}
         <TableContainer sx={ChallengeStyle.tableContentStyle}>

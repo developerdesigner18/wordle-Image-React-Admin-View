@@ -72,14 +72,9 @@ const Words = () => {
   //
 
   //SEARCH FUNCTION AND STATES
-  const [searchTerm, setsearchTerm] = useState();
-  const handleSearch = () => {
+  const handleSearch = (searchTerm) => {
     var newArray = words?.filter((item) => {
-      if (searchTerm === "") {
-        return item;
-      } else {
-        return item?.word?.toLowerCase()?.includes(searchTerm?.toLowerCase());
-      }
+      return item?.word?.toLowerCase()?.includes(searchTerm?.toLowerCase());
     });
     if (newArray.length !== 0) {
       setsearch(newArray);
@@ -111,9 +106,8 @@ const Words = () => {
             }}
             size="small"
             sx={WordStyle.searchFieldStyle}
-            onKeyDown={(e) => {
-              setsearchTerm(e.target.value);
-              handleSearch();
+            onChange={(e) => {
+              handleSearch(e.target.value);
             }}
           />
           <Box sx={WordStyle.generalButtonHolderStyle}>
