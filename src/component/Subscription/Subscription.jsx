@@ -10,6 +10,7 @@ import sendCustomMail from "../../utils/sendCustomMail";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useFetchRegisteredUser from "../../hook/useFetchRegisteredUser";
+import removeUser from "../../utils/removeUser";
 const toastConfig = {
   position: "top-center",
   autoClose: 5000,
@@ -28,7 +29,8 @@ function Subscription() {
     selectedId
   );
   const registeredUser = useFetchRegisteredUser(
-    `${process.env.REACT_APP_BACKEND_URL}/user/getalluser`
+    `${process.env.REACT_APP_BACKEND_URL}/user/getalluser`,
+    selectedId
   );
 
   const [subject, setsubject] = useState("");
@@ -36,6 +38,9 @@ function Subscription() {
 
   const handleRemove = (email) => {
     removeSubscriber(email);
+  };
+  const handleRemoveUser = (email) => {
+    removeUser(email);
   };
 
   const handleMailSent = () => {
@@ -151,7 +156,7 @@ function Subscription() {
                     color="error"
                     sx={SubscriptionStyle.btnStyle}
                     onClick={() => {
-                      handleRemove(item?.email);
+                      handleRemoveUser(item?.email);
                       setselectedId(item?._id);
                     }}
                   >
