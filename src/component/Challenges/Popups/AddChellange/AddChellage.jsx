@@ -30,7 +30,8 @@ function AddChellange({
 }) {
   const [challenge_img, setchallenge_img] = useState();
   const [challenge_word, setchallenge_word] = useState("");
-  const [grauout, setgrauout] = useState("false");
+  const [grauout, setgrauout] = useState(false);
+  const [blurr, setblurr] = useState(false);
   const [state, setState] = useState(false);
 
   const handleSavedata = async () => {
@@ -38,6 +39,7 @@ function AddChellange({
     bodyFormData.append("challenge_img", challenge_img);
     bodyFormData.append("challenge_word", challenge_word);
     bodyFormData.append("grauout", grauout);
+    bodyFormData.append("blurr", blurr);
     addChallenges(bodyFormData)
       .then(() => {
         settoggle(!toggle);
@@ -74,7 +76,11 @@ function AddChellange({
                 height="100"
                 width="100"
                 style={
-                  grauout === true
+                  grauout && blurr
+                    ? AddChellangeStyle.imageBlackWhiteBlurPreviewStyle
+                    : grauout && !blurr
+                    ? AddChellangeStyle.imageBlackWhitePreviewStyle
+                    : !grauout && blurr
                     ? AddChellangeStyle.imageBlurPreviewStyle
                     : AddChellangeStyle.imagePreviewStyle
                 }
@@ -126,6 +132,23 @@ function AddChellange({
             sx={AddChellangeStyle.switchStyle}
             onChange={(e) => {
               setgrauout(e.target.checked);
+            }}
+          />
+        </Box>
+        <Box
+          sx={
+            localStorage.getItem("admin-theme") === "dark"
+              ? AddChellangeStyle.grayOutFieldDark
+              : AddChellangeStyle.grayOutField
+          }
+        >
+          <Typography variant="h6" sx={AddChellangeStyle.GrayouttextStyle}>
+            blurr
+          </Typography>
+          <GreenSwitch
+            sx={AddChellangeStyle.switchStyle}
+            onChange={(e) => {
+              setblurr(e.target.checked);
             }}
           />
         </Box>

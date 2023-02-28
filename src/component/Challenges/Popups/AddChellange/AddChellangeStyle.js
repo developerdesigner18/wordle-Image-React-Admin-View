@@ -66,7 +66,7 @@ export const AddChellangeStyle = {
   ModelHeadingStyle: {
     textAlign: "center",
     fontWeight: "700",
-    marginBottom: "20px"
+    marginBottom: "20px",
   },
 
   GrayouttextStyle: {
@@ -120,5 +120,14 @@ export const AddChellangeStyle = {
   imageBlurPreviewStyle: {
     objectFit: "cover",
     webkitFilter: "blur(5px)",
+  },
+  imageBlackWhiteBlurPreviewStyle: {
+    objectFit: "cover",
+    filter: "grayscale(100%) blur(5px)",
+  },
+  imageBlackWhitePreviewStyle: {
+    objectFit: "cover",
+    // webkitFilter: "blur(5px)",
+    filter: " grayscale(100%)",
   },
 };
