@@ -23,6 +23,7 @@ import AddChellange from "./Popups/AddChellange/AddChellage";
 import UpdateChallenge from "./Popups/UpdateChallenge/UpdateChallenge";
 // import { AddChellangeStyle } from "./Popups/AddChellange/AddChellangeStyle";
 import SearchIcon from "@mui/icons-material/Search";
+import moment from "moment/moment";
 
 const columns = [
   { id: "No", label: "No", align: "center" },
@@ -188,7 +189,11 @@ function Challenges() {
                             />
                           </TableCell>
                           <TableCell sx={ChallengeStyle.tableCellStyle}>
-                            {row["status"]}
+                            {row["status"] == "used"
+                              ? `${row["status"]} on ${moment(
+                                  row["usedDate"]
+                                ).format("DD-MMM-YYYY HH:mm:ss")}`
+                              : `${row["status"]}`}
                           </TableCell>
                           <TableCell sx={ChallengeStyle.tableCellStyle}>
                             <Box sx={ChallengeStyle.actionBoxStyle}>
